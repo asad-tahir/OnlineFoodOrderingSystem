@@ -8,7 +8,10 @@ namespace OnlineFoodOrderingSystem.Models
     public class Transaction
     {
         public int Id { get; set; }
-        // TODO: CustomerId
+
+        public ApplicationUser Customer { get; set; }
+        public string CustomerId { get; set; }
+        
         public decimal Amount { get; set; }
         public DateTime TransactionDate { get; set; }
     }

@@ -19,8 +19,8 @@ namespace OnlineFoodOrderingSystem.Models
         [Key]
         [Column(Order = 2)]
         public int ItemId { get; set; }
-        
-        public byte Qty { get; set; }
+
+        public byte Qty { get; set; } = 1;
         public decimal Price { get; set; }
     }
 }

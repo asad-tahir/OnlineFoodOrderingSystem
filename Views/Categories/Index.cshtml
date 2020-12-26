@@ -3,5 +3,52 @@
     ViewBag.Title = "Categories - Index";
 }
 
-<h2>Categories - Index</h2>
+<h2>Categories</h2>
 
+<table id="categories-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="category-row" class="d-none">
+            <th id="count"></th>
+            <td><a id="name" href="#">Sample Name</a></td>
+            <td id="actions"><button class="btn btn-danger btn-sm" data-id="">delete</button></td>
+        </tr>
+    </tbody>
+</table>
+@section scripts{
+    <script>
+        $(document).ready(function () {
+            fetch("/Categories/GetCategories")
+                .then(response => response.json())
+                .then(data => {
+                    data.forEach(fillTable);
+                    $("#category-row").remove();
+
+                });
+        });
+        function fillTable(item, index) {
+            var categoryRow = $("#category-row").clone();
+            categoryRow.removeClass("d-none");
+            categoryRow.removeAttr("id");
+            var count = categoryRow.find("#count");
+            count.text(index + 1);
+            count.removeAttr("id");
+
+            var name = categoryRow.find("#name");
+            name.text(item.Name);
+            name.removeAttr("id");
+
+            var actions = categoryRow.find("#actions");
+            //actions.text(index + 1);
+            actions.removeAttr("id");
+
+            $("#categories-table").append(categoryRow);
+        }
+    </script>
+    }

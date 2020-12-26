@@ -9,8 +9,11 @@ namespace OnlineFoodOrderingSystem.Models
     {
         public int Id { get; set; }
         // CustomerId
-        // IsDelivered
-        public DateTime OrderDate { get; set; }
+        public ApplicationUser Customer { get; set; }
+        public string CustomerId { get; set; }
+        // OrderStatus
+        public string Status { get; set; } = OrderStatus.Pending;
+        public DateTime OrderDate { get; set; } = DateTime.UtcNow;
         public Transaction Transaction { get; set; }
         public int TransactionId { get; set; }
     }
