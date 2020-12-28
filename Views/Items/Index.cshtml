@@ -1,7 +1,120 @@
-﻿
-@{
+﻿@{
     ViewBag.Title = "Index";
 }
 
-<h2>Index</h2>
+<table id="items-table" class="table table-striped">
+    <thead>
+        <tr>
+            <th scope="col">#</th>
+            <th scope="col">Name</th>
+            <th scope="col">Price</th>
+            <th scope="col">Available</th>
+            <th scope="col">Actions</th>
+        </tr>
+    </thead>
+    <tbody>
+        <tr id="item-row" class="d-none">
+            <th id="count" scope="row"></th>
+            <td id="name"></td>
+            <td id="price"></td>
+            <td id="avail"></td>
+            <td>
+                <!-- Button trigger modal -->
+                <button id="view" type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalLong"></button>
+                <!-- Modal -->
+                <div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+                        <div class="modal-content">
+                            <div class="modal-header">
+                                <h3 class="modal-title" id="view-modal-LongTitle"></h3>
+                                <span class="badge badge-info">Available</span>
 
+                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                                    <span aria-hidden="true">&times;</span>
+                                </button>
+                            </div>
+                            <div class="modal-body">
+                                <div class="badge badge-light w-100 text-left" style="font-size: 22px;">PKR 200</div>
+                                <img class="w-100 h-auto" src="~/" alt="Item Image" />
+                                <p class="p-3" style="font-size: 18px" id="desc-p"></p>
+                            </div>
+                            <div class="modal-footer mr-auto">
+                                <button type="button" class="btn btn-info btn-sm">Save changes</button>
+                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <a class="btn btn-outline-primary btn-sm" href="#" id="edit"></a>
+                <a class="btn btn-outline-danger btn-sm" href="#" id="delete"></a>
+            </td>
+        </tr>
+    </tbody>
+</table>
+
+
+
+@section scripts{
+    <script>
+        fetch("/Items/GetItems")
+            .then(response => response.json())
+            .then(items => {
+                items.forEach(function (item, index) {
+
+                    var row = $('#item-row').clone();
+                    row.removeClass('d-none');
+                    row.removeAttr('id');
+
+                    var count = row.find('#count');
+                    count.removeAttr('id');
+                    count.text(index + 1);
+
+                    var edit = row.find('#edit');
+                    edit.attr('href', '/Items/EditItem/' + item.Id)
+                    edit.removeAttr('id');
+                    edit.text('Edit');
+
+                    var dlt = row.find('#delete');
+                    dlt.attr('href', '/Items/DeleteItem/' + item.Id);
+                    dlt.removeAttr('id');
+                    dlt.text('DELETE');
+                    // VIEW:
+                    var view = row.find('#view');
+                    view.attr('data-target', '#view-' + item.Id)
+                    view.removeAttr('id');
+                    view.text('View');
+                    // view modal
+                    var viewModal = row.find('#view-modal');
+                    viewModal.attr('id', 'view-' + item.Id);
+                    var longTitle = viewModal.find('#view-modal-LongTitle');
+                    longTitle.text(item.Name);
+                    longTitle.removeAttr('id');
+
+                    var src = viewModal.find('img').attr('src');
+                    src = src + item.ImageUrl;
+                    viewModal.find('img').attr('src', src);
+
+                    var descPara = viewModal.find('#desc-p');
+                    descPara.text(item.Description);
+                    descPara.removeAttr('id');
+
+                    //todo:
+
+                    var name = row.find('#name');
+                    name.removeAttr('id');
+                    name.text(item.Name);
+
+                    var price = row.find('#price');
+                    price.removeAttr('id');
+                    price.text(item.Price);
+
+                    var avail = row.find('#avail');
+                    avail.removeAttr('id');
+                    avail.text(item.IsAvailable ? 'Yes' : 'No');
+                    $('#items-table').append(row);
+                });
+                $('#item-row').remove();
+            });
+    </script>
+}
