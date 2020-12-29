@@ -16,8 +16,8 @@
     <tbody>
         <tr id="category-row" class="d-none">
             <th id="count"></th>
-            <td><a id="name" href="#">Sample Name</a></td>
-            <td id="actions"><button class="btn btn-danger btn-sm" data-id="">delete</button></td>
+            <td><a id="name" href="#"></a></td>
+            <td><a class="btn btn-danger btn-sm" id="delete" href="#">delete</a></td>
         </tr>
     </tbody>
 </table>
@@ -44,9 +44,9 @@
             name.text(item.Name);
             name.removeAttr("id");
 
-            var actions = categoryRow.find("#actions");
-            //actions.text(index + 1);
-            actions.removeAttr("id");
+            var dlt = categoryRow.find("#delete");
+            dlt.attr('href','/Categories/DeleteCategory/'+item.Id);
+            dlt.removeAttr("id");
 
             $("#categories-table").append(categoryRow);
         }

@@ -12,13 +12,13 @@
             @if (User.IsInRole(ConfigurationManager.AppSettings.Get("RoleAdmin")))
             {
                 <li class="nav-item">
-                    <a class="nav-link" href="/Admin/Index">Orders</a>
+                    <a class="nav-link" href="#">Orders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Transactions</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Users</a>
+                    <a class="nav-link" href="/Users/">Users</a>
                 </li>
                 <li class="nav-item dropdown">
                     <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
@@ -32,14 +32,24 @@
                     </div>
                 </li>
             }
-            <li class="nav-item dropdown">
-                <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                    Other
-                </a>
-                <div class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <a class="dropdown-item" href="#">About</a>
-                    <a class="dropdown-item" href="#">Contact</a>
-                </div>
+            @if (User.IsInRole(ConfigurationManager.AppSettings.Get("RoleCustomer")))
+            {
+                <li class="nav-item">
+                    <a class="nav-link" href="/Items/Menu">Menu-List</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">My-Orders</a>
+                </li>
+                <li class="nav-item">
+                    <a class="nav-link" href="#">Cart</a>
+                </li>
+
+            }
+            <li class="nav-item">
+                <a class="nav-link" href="#">About</a>
+            </li>
+            <li class="nav-item">
+                <a class="nav-link" href="#">Contact</a>
             </li>
         </ul>
         <span class="navbar-text">

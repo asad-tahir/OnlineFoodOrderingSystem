@@ -1,17 +1,15 @@
 ﻿@model OnlineFoodOrderingSystem.ViewModels.ItemViewModel
 
 @{
-    ViewBag.Title = "AddItem";
+    ViewBag.Title = "Add Item";
 }
-
-<h2>AddItem</h2>
 
 @using (Html.BeginForm("AddItem", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
 {
     @Html.AntiForgeryToken()
 
-    <div class="form-horizontal">
-        <h4>AddItemViewModel</h4>
+    <div class="form-horizontal w-75 mx-auto">
+        <h4>Add Item</h4>
         <hr />
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
@@ -22,7 +20,7 @@
             </div>
         </div>
         <div class="form-group">
-            <label for="CategoryIds" class="control-label col-md-2">Example multiple select</label>
+            <label for="CategoryIds" class="control-label col-md-2">Select Categories</label>
             <div class="col-md-10">
                 <select multiple="" name="CategoryIds" class="form-control" id="CategoryIds">
                     <option id="options-loading" value="">Loading...</option>
@@ -40,7 +38,7 @@
         <div class="form-group">
             @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
             <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control" } })
+                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", min = "0", step = "0.1" } })
                 @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
             </div>
         </div>
@@ -71,6 +69,7 @@
 }
 
 
+
 @section scripts{
     <script>
         $(document).ready(function () {
@@ -87,7 +86,7 @@
             categoryOption.removeAttr("id");
             categoryOption.val(item.Id);
             categoryOption.text(item.Name);
-            
+
             $("#CategoryIds").append(categoryOption);
         }
     </script>

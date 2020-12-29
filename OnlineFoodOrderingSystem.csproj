@@ -177,6 +177,7 @@
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
+    <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
@@ -204,6 +205,10 @@
     <Compile Include="Migrations\202012260652331_AddImageUrlInItem.designer.cs">
       <DependentUpon>202012260652331_AddImageUrlInItem.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202012291100363_PriceTypeDecimal.cs" />
+    <Compile Include="Migrations\202012291100363_PriceTypeDecimal.designer.cs">
+      <DependentUpon>202012291100363_PriceTypeDecimal.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -223,6 +228,7 @@
     </Compile>
     <Compile Include="Startup.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
+    <Compile Include="ViewModels\UsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-grid.css" />
@@ -389,6 +395,8 @@
     <Content Include="Views\Categories\AddCategory.cshtml" />
     <Content Include="Views\Items\Index.cshtml" />
     <Content Include="Views\Items\AddItem.cshtml" />
+    <Content Include="Views\Users\Index.cshtml" />
+    <Content Include="Views\Items\Menu.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -422,6 +430,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012260652331_AddImageUrlInItem.resx">
       <DependentUpon>202012260652331_AddImageUrlInItem.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202012291100363_PriceTypeDecimal.resx">
+      <DependentUpon>202012291100363_PriceTypeDecimal.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

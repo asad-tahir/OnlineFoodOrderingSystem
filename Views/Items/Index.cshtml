@@ -19,40 +19,69 @@
             <td id="price"></td>
             <td id="avail"></td>
             <td>
-                <!-- Button trigger modal -->
-                <button id="view" type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-target="#exampleModalLong"></button>
-                <!-- Modal -->
-                <div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
-                    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
-                        <div class="modal-content">
-                            <div class="modal-header">
-                                <h3 class="modal-title" id="view-modal-LongTitle"></h3>
-                                <span class="badge badge-info">Available</span>
+                <!-- View Modal Button trigger -->
+                <button id="view-modal-button" type="button" class="btn btn-outline-info btn-sm" data-toggle="modal" data-id="" data-target="#view-modal">View</button>
 
-                                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
-                                    <span aria-hidden="true">&times;</span>
-                                </button>
-                            </div>
-                            <div class="modal-body">
-                                <div class="badge badge-light w-100 text-left" style="font-size: 22px;">PKR 200</div>
-                                <img class="w-100 h-auto" src="~/" alt="Item Image" />
-                                <p class="p-3" style="font-size: 18px" id="desc-p"></p>
-                            </div>
-                            <div class="modal-footer mr-auto">
-                                <button type="button" class="btn btn-info btn-sm">Save changes</button>
-                                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
-                            </div>
-                        </div>
-                    </div>
-                </div>
+                <!-- Edit Modal Button trigger -->
+                <button id="edit-modal-button" type="button" class="btn btn-outline-primary btn-sm" data-toggle="modal" data-id="" data-target="#edit-modal">Edit</button>
 
-                <a class="btn btn-outline-primary btn-sm" href="#" id="edit"></a>
-                <a class="btn btn-outline-danger btn-sm" href="#" id="delete"></a>
+                <a class="btn btn-outline-danger btn-sm" href="#" id="delete">DELETE</a>
             </td>
         </tr>
     </tbody>
 </table>
+<!-- View Modal -->
+<div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <img class="w-100 h-auto" src="~/" alt="Item Image" />
+                <div class="d-flex justify-content-between p-3"><h4 id="item-name">ITEM</h4><p id="price-modal" class="pr-3">PRICE</p></div>
+                <hr />
+                <p class="p-3" style="font-size: 18px" id="desc-p"></p>
+            </div>
+            <div class="modal-footer mr-auto">
+                <button type="button" class="btn btn-info btn-sm">Save changes</button>
+                <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Edit Modal -->
+<div class="modal fade" id="edit-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-title" class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form action="/items/updateitem" method="post">
+                    @Html.AntiForgeryToken()
+                    <div class="form-group">
+                        <label for="Price">Price</label>
+                        <input type="number" class="form-control" name="Price" id="Price" min="0" step="0.1" required />
+                    </div>
 
+                    <div class="form-check">
+                        @*<input type="checkbox" class="form-check-input" data-val="" name="IsAvailable" checked="" id="IsAvailable">*@
+                        <input class="check-box" data-val="true" id="IsAvailable" name="IsAvailable" type="checkbox" value="true">
+                        <label class="form-check-label" for="IsAvailable">Available</label>
+                    </div>
+                    <input type="text" name="Id" id="item-id" hidden value="" />
+                    <hr />
+                    <button type="submit" class="btn btn-primary btn-sm">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
 
 
 @section scripts{
@@ -70,40 +99,23 @@
                     count.removeAttr('id');
                     count.text(index + 1);
 
-                    var edit = row.find('#edit');
-                    edit.attr('href', '/Items/EditItem/' + item.Id)
-                    edit.removeAttr('id');
-                    edit.text('Edit');
+                    var viewModal = row.find('#view-modal-button');
+                    viewModal.attr('data-id', item.Id);
+                    viewModal.removeAttr('id');
+                    viewModal.text('VIEW');
 
-                    var dlt = row.find('#delete');
-                    dlt.attr('href', '/Items/DeleteItem/' + item.Id);
-                    dlt.removeAttr('id');
-                    dlt.text('DELETE');
-                    // VIEW:
-                    var view = row.find('#view');
-                    view.attr('data-target', '#view-' + item.Id)
-                    view.removeAttr('id');
-                    view.text('View');
-                    // view modal
-                    var viewModal = row.find('#view-modal');
-                    viewModal.attr('id', 'view-' + item.Id);
-                    var longTitle = viewModal.find('#view-modal-LongTitle');
-                    longTitle.text(item.Name);
-                    longTitle.removeAttr('id');
-
-                    var src = viewModal.find('img').attr('src');
-                    src = src + item.ImageUrl;
-                    viewModal.find('img').attr('src', src);
-
-                    var descPara = viewModal.find('#desc-p');
-                    descPara.text(item.Description);
-                    descPara.removeAttr('id');
-
-                    //todo:
+                    var editModal = row.find('#edit-modal-button');
+                    editModal.attr('data-id', item.Id);
+                    editModal.removeAttr('id');
+                    editModal.text('EDIT');
 
                     var name = row.find('#name');
                     name.removeAttr('id');
                     name.text(item.Name);
+
+                    var dlt = row.find('#delete');
+                    dlt.removeAttr('id');
+                    dlt.attr('href', '/items/deleteitem/' + item.Id);
 
                     var price = row.find('#price');
                     price.removeAttr('id');
@@ -116,5 +128,63 @@
                 });
                 $('#item-row').remove();
             });
+
+        $('tbody').on('click', 'button', function () {
+            const actions = {
+                showViewModal: "#view-modal",
+                showEditModal: "#edit-modal"
+            };
+
+            var itemId = $(this).attr('data-id');
+            var action = $(this).attr('data-target');
+            if (action === actions.showViewModal) {
+                fillViewModal(itemId);
+            } else {
+                fillEditModal(itemId);
+            }
+        });
+        function fillViewModal(itemId) {
+            fetch('/Items/Item/' + itemId)
+                .then(response => response.json())
+                .then(item => {
+                    var viewModal = $('#view-modal');
+
+                    var longTitle = viewModal.find('#item-name');
+                    longTitle.text(item.Name);
+
+                    var priceModal = viewModal.find('#price-modal');
+                    priceModal.text('PKR ' + item.Price);
+
+                    viewModal.find('img').attr('src', '/' + item.ImageUrl);
+
+                    var descPara = viewModal.find('#desc-p');
+                    descPara.text(item.Description);
+                });
+        }
+
+        function fillEditModal(itemId) {
+            fetch('/Items/Item/' + itemId)
+                .then(response => response.json())
+                .then(item => {
+
+                    var editModal = $('#edit-modal');
+
+                    var modalTitle = editModal.find('#modal-title');
+                    modalTitle.text(item.Name);
+
+                    var priceModal = editModal.find('#Price');
+                    priceModal.val(item.Price);
+
+                    var priceModal = editModal.find('#Price');
+                    priceModal.val(item.Price);
+
+                    var itemId = editModal.find('#item-id');
+                    itemId.val(item.Id);
+
+                    var issAvailable = editModal.find('#IsAvailable');
+                    issAvailable.attr('checked', item.IsAvailable);
+                });
+        }
+
     </script>
 }

@@ -18,9 +18,9 @@ namespace OnlineFoodOrderingSystem.ViewModels
         [Required]
         public string Description { get; set; }
         [Required]
-        public int Price { get; set; }
+        public decimal Price { get; set; }
         public string ImageUrl { get; set; }
-        public bool IsAvailable { get; set; } = true;
+        public bool IsAvailable { get; set; } 
         public IEnumerable<int> CategoryIds { get; set; }
         public HttpPostedFileBase Image { get; set; }
         public static void AddUpdateItem(ItemViewModel viewModel)
@@ -75,7 +75,13 @@ namespace OnlineFoodOrderingSystem.ViewModels
         {
             using (ApplicationDbContext _context = new ApplicationDbContext())
             {
-                // TODO:
+                var item = _context.Items.SingleOrDefault(i => i.Id == viewModel.Id);
+                if(item != null)
+                {
+                    item.Price = viewModel.Price;
+                    item.IsAvailable = viewModel.IsAvailable;
+                    _context.SaveChanges();
+                }
             }
         }
         public static List<Item> GetItems()

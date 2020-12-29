@@ -16,7 +16,7 @@ namespace OnlineFoodOrderingSystem.Controllers
         }
         protected override void Dispose(bool disposing)
         {
-            if(disposing)
+            if (disposing)
             {
                 _context.Dispose();
             }
@@ -35,7 +35,7 @@ namespace OnlineFoodOrderingSystem.Controllers
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
-            if(!ModelState.IsValid)
+            if (!ModelState.IsValid)
             {
                 return View(category);
             }
@@ -48,6 +48,19 @@ namespace OnlineFoodOrderingSystem.Controllers
         {
             var categories = _context.Categories.ToList();
             return Json(categories, JsonRequestBehavior.AllowGet);
+        }
+
+        public ActionResult DeleteCategory(int id)
+        {
+
+            var category = _context.Categories.SingleOrDefault(c => c.Id == id);
+            if (category != null)
+            {
+                _context.Categories.Remove(category);
+                _context.SaveChanges();
+            }
+
+            return RedirectToAction("Index", "Categories");
         }
     }
 }
