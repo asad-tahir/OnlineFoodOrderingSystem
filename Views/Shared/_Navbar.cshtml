@@ -12,7 +12,7 @@
             @if (User.IsInRole(ConfigurationManager.AppSettings.Get("RoleAdmin")))
             {
                 <li class="nav-item">
-                    <a class="nav-link" href="#">Orders</a>
+                    <a class="nav-link" href="/Orders/">Orders</a>
                 </li>
                 <li class="nav-item">
                     <a class="nav-link" href="#">Transactions</a>
@@ -35,25 +35,22 @@
             @if (User.IsInRole(ConfigurationManager.AppSettings.Get("RoleCustomer")))
             {
                 <li class="nav-item">
-                    <a class="nav-link" href="/Items/Menu">Menu-List</a>
+                    <a class="nav-link" href="/Items/Menu">Menu</a>
                 </li>
                 <li class="nav-item">
-                    <a class="nav-link" href="#">My-Orders</a>
+                    <a class="nav-link" href="/Orders/Index">My Orders</a>
                 </li>
-                <li class="nav-item">
-                    <a class="nav-link" href="#">Cart</a>
-                </li>
-
             }
             <li class="nav-item">
-                <a class="nav-link" href="#">About</a>
+                <a class="nav-link" href="/home/about">About</a>
             </li>
             <li class="nav-item">
-                <a class="nav-link" href="#">Contact</a>
+                <a class="nav-link" href="/home/contact">Contact</a>
             </li>
         </ul>
-        <span class="navbar-text">
-            @Html.Partial("_LoginPartial")
-        </span>
+        
+        @Html.Partial("_LoginPartial")
+
+
     </div>
 </nav>

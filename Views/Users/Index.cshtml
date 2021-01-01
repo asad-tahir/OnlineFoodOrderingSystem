@@ -3,50 +3,30 @@
     ViewBag.Title = "Users";
 }
 
-<h2>Users</h2>
-
-<table class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Email</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr id="user-data-row" class="d-none">
-            <th id="count" scope="row"></th>
-            <td id="name"></td>
-            <td id="email"></td>
-        </tr>
-    </tbody>
-</table>
+<div class="container">
+    <hr />
+    <h3>Users</h3>
+    <hr />
+    <table class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Email</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="user-data-row" class="d-none">
+                <th id="count" scope="row"></th>
+                <td id="name"></td>
+                <td id="email"></td>
+            </tr>
+        </tbody>
+    </table>
+</div>
 
 @section scripts{
-    <script>
-        fetch('/users/getusers')
-            .then(response => response.json())
-            .then(users => {
-                users.forEach(function (user, index) {
-                    var row = $('#user-data-row').clone();
-                    row.removeClass('d-none');
-                    row.removeAttr('id');
-
-                    var count = row.find('#count');
-                    count.removeAttr('id');
-                    count.text(index+1);
-
-                    var name = row.find('#name');
-                    name.removeAttr('id');
-                    name.text(user.Name);
-
-                    var email = row.find('#email');
-                    email.removeAttr('id');
-                    email.text(user.Email);
-                    $('tbody').append(row);
-                });
-                $('#user-data-row').remove();
-
-            });
+    <script src="~/Scripts/app.users.index.js">
+        
     </script>
 }

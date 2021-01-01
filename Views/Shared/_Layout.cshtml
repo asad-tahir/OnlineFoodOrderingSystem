@@ -8,10 +8,10 @@
     @Scripts.Render("~/bundles/modernizr")
 
 </head>
-<body class="min-vh-100">
-    <div class="min-vh-100 position-relative">
+<body>
+    <div class="min-vh-100 position-relative container-fluid">
         @Html.Partial("_Navbar")
-        <div class="container mt-4 body-content pb-5">
+        <div class="w-100 pb-5">
             @RenderBody()
         </div>
         <footer class="mt-2 w-100">

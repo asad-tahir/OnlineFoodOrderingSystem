@@ -3,52 +3,27 @@
     ViewBag.Title = "Categories - Index";
 }
 
-<h2>Categories</h2>
+<div class="container">
+    <hr />
+    <h3>Categories</h3>
+    <table id="categories-table" class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">#</th>
+                <th scope="col">Name</th>
+                <th scope="col">Actions</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="category-row" class="d-none">
+                <th id="count"></th>
+                <td><a id="name" href="#"></a></td>
+                <td><a class="btn btn-danger btn-sm" id="delete" href="#">delete</a></td>
+            </tr>
+        </tbody>
+    </table>
 
-<table id="categories-table" class="table table-striped">
-    <thead>
-        <tr>
-            <th scope="col">#</th>
-            <th scope="col">Name</th>
-            <th scope="col">Actions</th>
-        </tr>
-    </thead>
-    <tbody>
-        <tr id="category-row" class="d-none">
-            <th id="count"></th>
-            <td><a id="name" href="#"></a></td>
-            <td><a class="btn btn-danger btn-sm" id="delete" href="#">delete</a></td>
-        </tr>
-    </tbody>
-</table>
+</div>
 @section scripts{
-    <script>
-        $(document).ready(function () {
-            fetch("/Categories/GetCategories")
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(fillTable);
-                    $("#category-row").remove();
-
-                });
-        });
-        function fillTable(item, index) {
-            var categoryRow = $("#category-row").clone();
-            categoryRow.removeClass("d-none");
-            categoryRow.removeAttr("id");
-            var count = categoryRow.find("#count");
-            count.text(index + 1);
-            count.removeAttr("id");
-
-            var name = categoryRow.find("#name");
-            name.text(item.Name);
-            name.removeAttr("id");
-
-            var dlt = categoryRow.find("#delete");
-            dlt.attr('href','/Categories/DeleteCategory/'+item.Id);
-            dlt.removeAttr("id");
-
-            $("#categories-table").append(categoryRow);
-        }
-    </script>
-    }
+    <script src="~/Scripts/app.categories.index.js"></script>
+}

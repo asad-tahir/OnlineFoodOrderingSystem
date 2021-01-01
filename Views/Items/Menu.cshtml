@@ -4,4 +4,126 @@
 }
 
 
-<img src="/images/menu-top.jpg" class="img-fluid" alt="Responsive image">
+<img src="/images/menu-top.jpg" class="w-100 h-auto mb-5" alt="Responsive image">
+<div class="w-100" id="menu">
+    <button type="button" class="btn btn-primary fixed-top ml-auto mr-5" style="margin-top:420px;" data-toggle="modal" data-target="#modal-cart">Cart</button>
+    <div id="custom-container" class="d-none p-3">
+        <!--  Category Name   -->
+        <h2 id="category-name" class="ml-5"></h2>
+        <!--  Items   -->
+        <div id="items-container" class="container-fluid d-flex flex-wrap justify-content-lg-start">
+            <div data-id="" id="card" class="card custom-card-link border-secondary m-3" style="width: 18rem;">
+                <img class="card-img-top" src="/images/Egg Fried Rice_20201229085226293.jpg" style="height:208px" alt="Card image cap">
+                <div class="card-body p-2 ">
+                    <div class="d-flex justify-content-between">
+                        <h5 class="card-title mb-0">Card title</h5>
+                        <p class="card-text">200</p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="view-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered modal-lg" role="document">
+        <div class="modal-content">
+            <div class="modal-body">
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+                <img class="w-100 h-auto" src="~/" alt="Item Image" />
+                <div class="d-flex justify-content-between p-3"><h4 id="item-name">ITEM</h4><p id="price-modal" class="pr-3">PRICE</p></div>
+            </div>
+            <div class="modal-footer d-flex flex-row justify-content-between">
+                <p class="p-3 w-75" style="font-size: 18px" id="desc-p"></p>
+                <div class="d-flex flex-row align-items-center">
+                    <span>Qty:</span>
+                    <input data-item-name="" data-item-id="" data-item-price="" type="number" class="form-inline ml-3 p-1" min="0" max="10" id="qty" name="name" value="" />
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Button trigger modal -->
+<!-- Button in navbar -->
+<!-- Modal cart -->
+<div class="modal" id="modal-cart" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLongTitle">Your Order Preview</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <table class="table table-sm" id="table-cart">
+                    <thead>
+                        <tr>
+                            <th scope="col">Name</th>
+                            <th scope="col">Price</th>
+                            <th scope="col">Quantity</th>
+                            <th scope="col">Price</th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <tr id="exampleCartRow" class="d-none">
+                            <td id="name"></td>
+                            <td id="item-price"></td>
+                            <td><input data-item-name="" data-item-id="" data-item-price="" id="cart-qty" type="number" min="0" max="15" style="width: 3em;"></td>
+                            <td id="total-price" class="total-price"></td>
+                        </tr>
+                    </tbody>
+                </table>
+                <div class="d-flex flex-row justify-content-end">
+                    <p class="d-inline-block font-weight-bold">Grand Total:</p>
+                    <p class="d-inline-block ml-3" id="grand-total"></p>
+                </div>
+            </div>
+            <div class="modal-footer mr-auto">
+                <button id="place-order" type="button" class="btn btn-primary">Place Order</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
+</div>
+<!-- Payment Modal -->
+<div class="modal" id="payment-modal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLongTitle" aria-hidden="true">
+    <div class="modal-dialog modal-dialog-centered" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 id="modal-title" class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <div id="anti-ft">
+                        @Html.AntiForgeryToken()
+
+                    </div>
+
+                    <div class="form-group">
+                        <label for="CardNumber">Card Number</label>
+                        <input type="text" class="form-control" value="4111111111111111" name="CardNumber" id="CardNumber" disabled required />
+                    </div>
+
+                    <div class="form-group">
+                        <label for="ExpirationDate">Expiration Date</label>
+                        <input disabled type="text" placeholder="mm/yy" value="10/28" class="form-control" name="ExpirationDate" id="ExpirationDate" required />
+                    </div>
+                    <input type="text" name="Id" id="item-id" hidden value="" />
+                    <hr />
+                    <button id="submit-info" type="button" class="btn btn-primary btn-sm">Submit</button>
+                    <button type="button" class="btn btn-secondary btn-sm" data-dismiss="modal">Close</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+@section scripts{
+    <script src="~/Scripts/app.items.menu.js"></script>
+}

@@ -22,16 +22,19 @@ namespace OnlineFoodOrderingSystem.Controllers
             }
             base.Dispose(disposing);
         }
-
+        [Authorize(Roles =UserRole.Admin)]
         // GET: Category
         public ActionResult Index()
         {
             return View();
         }
+
+        [Authorize(Roles = UserRole.Admin)]
         public ActionResult AddCategory()
         {
             return View();
         }
+        [Authorize(Roles = UserRole.Admin)]
         [HttpPost]
         public ActionResult AddCategory(Category category)
         {
@@ -43,13 +46,14 @@ namespace OnlineFoodOrderingSystem.Controllers
             _context.SaveChanges();
             return RedirectToAction("Index");
         }
+        [Authorize]
         [HttpGet]
         public ActionResult GetCategories()
         {
             var categories = _context.Categories.ToList();
             return Json(categories, JsonRequestBehavior.AllowGet);
         }
-
+        [Authorize(Roles =UserRole.Admin)]
         public ActionResult DeleteCategory(int id)
         {
 

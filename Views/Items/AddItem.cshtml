@@ -3,91 +3,77 @@
 @{
     ViewBag.Title = "Add Item";
 }
+<div class="container">
 
-@using (Html.BeginForm("AddItem", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
-{
-    @Html.AntiForgeryToken()
+    @using (Html.BeginForm("AddItem", "Items", FormMethod.Post, new { enctype = "multipart/form-data" }))
+    {
+        @Html.AntiForgeryToken()
 
-    <div class="form-horizontal w-75 mx-auto">
-        <h4>Add Item</h4>
-        <hr />
-        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
-        <div class="form-group">
-            @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
-                @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
-            </div>
-        </div>
-        <div class="form-group">
-            <label for="CategoryIds" class="control-label col-md-2">Select Categories</label>
-            <div class="col-md-10">
-                <select multiple="" name="CategoryIds" class="form-control" id="CategoryIds">
-                    <option id="options-loading" value="">Loading...</option>
-                </select>
-            </div>
-        </div>
-        <div class="form-group">
-            @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                <textarea data-val="true" data-val-required="The Description field is required." class="form-control w-100" id="Description" name="Description" rows="5"></textarea>
-                @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
-            </div>
-        </div>
+        <div class="form-horizontal mx-auto">
+            <hr />
+            <h4>Add Item</h4>
+            <hr />
 
-        <div class="form-group">
-            @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
-            <div class="col-md-10">
-                @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", min = "0", step = "0.1" } })
-                @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+            @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+            <div class="form-group">
+                @Html.LabelFor(model => model.Name, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Name, new { htmlAttributes = new { @class = "form-control" } })
+                    @Html.ValidationMessageFor(model => model.Name, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
+            <div class="form-group">
+                <label for="CategoryIds" class="control-label col-md-2">Select Categories</label>
+                <div class="col-md-10">
+                    <select multiple="" name="CategoryIds" class="form-control" id="CategoryIds">
+                        <option id="options-loading" value="">Loading...</option>
+                    </select>
+                </div>
+            </div>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Description, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    <textarea data-val="true" data-val-required="The Description field is required." class="form-control w-100" id="Description" name="Description" rows="5"></textarea>
+                    @Html.ValidationMessageFor(model => model.Description, "", new { @class = "text-danger" })
+                </div>
+            </div>
 
-        <div class="form-group">
-            <label class="control-label col-md-2" for="Image">File input</label>
-            <div class="col-md-10">
-                <input type="file" class="form-control-file" id="Image" name="Image" aria-describedby="fileHelp">
-                <small id="fileHelp" class="form-text text-muted">Add Image for above mentioned item.</small>
+            <div class="form-group">
+                @Html.LabelFor(model => model.Price, htmlAttributes: new { @class = "control-label col-md-2" })
+                <div class="col-md-10">
+                    @Html.EditorFor(model => model.Price, new { htmlAttributes = new { @class = "form-control", min = "0", step = "0.1" } })
+                    @Html.ValidationMessageFor(model => model.Price, "", new { @class = "text-danger" })
+                </div>
             </div>
-        </div>
-        <div class="form-group">
-            <label class="control-label col-md-2" for="IsAvailable">Available?</label>
-            <div class="col-md-10">
-                <div class="checkbox">
-                    @Html.EditorFor(model => model.IsAvailable)
-                    @Html.ValidationMessageFor(model => model.IsAvailable, "", new { @class = "text-danger" })
+
+            <div class="form-group">
+                <label class="control-label col-md-2" for="Image">File input</label>
+                <div class="col-md-10">
+                    <input type="file" class="form-control-file" id="Image" name="Image" aria-describedby="fileHelp">
+                    <small id="fileHelp" class="form-text text-muted">Add Image for above mentioned item.</small>
+                </div>
+            </div>
+            <div class="form-group">
+                <label class="control-label col-md-2" for="IsAvailable">Available?</label>
+                <div class="col-md-10">
+                    <div class="checkbox">
+                        @Html.EditorFor(model => model.IsAvailable)
+                        @Html.ValidationMessageFor(model => model.IsAvailable, "", new { @class = "text-danger" })
+                    </div>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <div class="col-md-offset-2 col-md-10">
+                    <input type="submit" value="Submit" class="btn btn-primary" />
                 </div>
             </div>
         </div>
+    }
 
-        <div class="form-group">
-            <div class="col-md-offset-2 col-md-10">
-                <input type="submit" value="Submit" class="btn btn-primary" />
-            </div>
-        </div>
-    </div>
-}
-
+</div>
 
 
 @section scripts{
-    <script>
-        $(document).ready(function () {
-            fetch("/Categories/GetCategories")
-                .then(response => response.json())
-                .then(data => {
-                    data.forEach(fillTable);
-                    $("#options-loading").remove();//CategoryIds
-
-                });
-        });
-        function fillTable(item) {
-            var categoryOption = $("#options-loading").clone();
-            categoryOption.removeAttr("id");
-            categoryOption.val(item.Id);
-            categoryOption.text(item.Name);
-
-            $("#CategoryIds").append(categoryOption);
-        }
-    </script>
+    <script src="~/Scripts/app.items.additem.js"></script>
 }

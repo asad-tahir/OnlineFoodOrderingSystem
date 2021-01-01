@@ -2,30 +2,40 @@
     ViewBag.Title = "Home Page";
 }
 
-<div class="jumbotron">
-    <h1>ASP.NET</h1>
-    <p class="lead">ASP.NET is a free web framework for building great Web sites and Web applications using HTML, CSS and JavaScript.</p>
-    <p><a href="https://asp.net" class="btn btn-primary btn-lg">Learn more &raquo;</a></p>
-</div>
 
-<div class="row">
-    <div class="col-md-4">
-        <h2>Getting started</h2>
-        <p>
-            ASP.NET MVC gives you a powerful, patterns-based way to build dynamic websites that
-            enables a clean separation of concerns and gives you full control over markup
-            for enjoyable, agile development.
+
+<div class="container">
+    <div class="jumbotron">
+        <h1>OFOS</h1>
+        <p class="lead">
+            The main objective of online food ordering system is to automate the existing manual system with the help of advance computerized software so, that valuable data can be stored for longer period with easy accessing and manipulation of the same.
+            The registered user can access the account with valid credentials. User can surf the food items according to categories, Cart and online payment options are available to user. User can track their orders with the food details.
+            In Online Food Ordering System Admin can handle the functionalities like add new food items, edit/delete food items, Enable/Disable the food items according to season and availability. Admin have authority to view order details and update the delivery status of food. The payment transaction and user details are also viewable to admin.
         </p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301865">Learn more &raquo;</a></p>
+        <p><a href="/Items/Menu" class="btn btn-primary btn-lg">Order Now &raquo;</a></p>
     </div>
-    <div class="col-md-4">
-        <h2>Get more libraries</h2>
-        <p>NuGet is a free Visual Studio extension that makes it easy to add, remove, and update libraries and tools in Visual Studio projects.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301866">Learn more &raquo;</a></p>
-    </div>
-    <div class="col-md-4">
-        <h2>Web Hosting</h2>
-        <p>You can easily find a web hosting company that offers the right mix of features and price for your applications.</p>
-        <p><a class="btn btn-default" href="https://go.microsoft.com/fwlink/?LinkId=301867">Learn more &raquo;</a></p>
+    <div class="row">
+        <div class="col-md-6">
+            <h2>Admin</h2>
+            <p>
+                <strong>Add Food Items:</strong>Admin can add food items details like name, Photo, Description/ Ingredients, Price, Category etc. <br />
+                <strong>View / Edit (Price, Enable/Disable) / Delete Items:</strong> Admin can view, edit the food items details as well as Enable/Disable food items according to season or availability.<br />
+                <strong>View Orders:</strong> Admin can track Live orders and Status Update for particular food delivery.<br />
+                <strong>View Transactions:</strong> View previous transaction by date search and total amount at end.<br />
+                <strong>View Users:</strong> Admin can view the users details which are given during registration.<br />
+            </p>
+        </div>
+
+        <div class="col-md-6">
+            <h2>User</h2>
+            <p>
+                <strong>Register:</strong> User have to register with essential details for food ordering system.
+                <strong>Login:</strong> User have to login with their credentials to access food ordering system.
+                <strong>Menu List:</strong> Different food items with respective categories viewable to user.
+                <strong>Item Details:</strong> User can view food items details and buy the product by doing online payment.
+                <strong>View Cart:</strong> User can view their cart details, delete food items from cart, update quantity etc.
+                <strong>View Orders and Status:</strong> User can keep track of their orders with delivery status.
+            </p>
+        </div>
     </div>
 </div>
