@@ -142,6 +142,31 @@ namespace OnlineFoodOrderingSystem.Controllers
         {
             return View();
         }
+        //
+        // POST:
+        [AllowAnonymous]
+        [HttpPost]
+        public JsonResult IsAlreadySigned(string Email)
+        {
+            using (var _context = new ApplicationDbContext())
+            {
+                var RegEmailId = _context.Users.Select(u => new { u.Email })
+                                               .SingleOrDefault(u => u.Email.ToLower() == Email.ToLower());
+
+                bool status;
+                if (RegEmailId != null)
+                {
+                    //Already registered  
+                    status = false;
+                }
+                else
+                {
+                    //Available to use  
+                    status = true;
+                }
+                return Json(status);
+            }
+        }
 
         //
         // POST: /Account/Register

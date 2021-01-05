@@ -67,6 +67,7 @@ namespace OnlineFoodOrderingSystem.Models
         [Required]
         [EmailAddress]
         [Display(Name = "Email")]
+        [System.Web.Mvc.Remote("IsAlreadySigned", "Account", HttpMethod = "POST", ErrorMessage = "Email already exists.")]
         public string Email { get; set; }
 
         [Required]
