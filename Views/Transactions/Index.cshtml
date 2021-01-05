@@ -1,0 +1,38 @@
+﻿
+@{
+    ViewBag.Title = "Transactions";
+}
+
+<div id="table-container" class="container">
+    <div class="form-row m-3">
+        <div class="form-group col-md-4">
+            <label for="dateFilter">Search By Date</label>
+            <input id="dateFilter" type="date" name="dateTime" class="form-control" value="" />
+        </div>
+    </div>
+        <hr />
+        <div class="d-flex justify-content-between">
+            <a id="showAll" href="/Transactions/Index" class="btn btn-primary mb-3 d-none">Show All</a>
+            <div class="d-flex ml-auto"><h6 class="mr-3">Total Amount: </h6><p id="totalAmount"></p></div>
+        </div>
+    <table id="transactions-table" class="table table-striped">
+        <thead>
+            <tr>
+                <th scope="col">Customer Name</th>
+                <th scope="col">Date-Time</th>
+                <th scope="col">Amount</th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr id="exampleRow" class="d-none">
+                <td id="name"></td>
+                <td id="date"></td>
+                <td id="amount"></td>
+            </tr>
+        </tbody>
+    </table>
+
+</div>
+@section scripts{
+    <script src="~/Scripts/app.transactions.index.js"></script>
+}

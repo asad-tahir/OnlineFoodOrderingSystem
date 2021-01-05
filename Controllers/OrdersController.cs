@@ -64,7 +64,7 @@ namespace OnlineFoodOrderingSystem.Controllers
                 }
                 if (User.IsInRole(UserRole.Admin))
                 {
-                    var orders = _context.Orders.Include(o => o.Transaction).ToList();
+                    var orders = _context.Orders.Include(o => o.Customer).Include(o => o.Transaction).ToList();
                     var customerOrders = new List<CustomerOrderViewModel>();
                     foreach (var order in orders)
                     {
@@ -73,7 +73,9 @@ namespace OnlineFoodOrderingSystem.Controllers
                             Id = order.Id,
                             OrderDate = order.OrderDate.ToString(),
                             Status = order.Status,
-                            Amount = order.Transaction.Amount
+                            Amount = order.Transaction.Amount,
+                            Address = order.Customer.Address,
+                            Name = order.Customer.Name
                         };
                         customerOrders.Add(customerOrder);
                     }

@@ -31,7 +31,7 @@
 
             var price = row.find('#price');
             price.removeAttr('id');
-            price.text(item.Price);
+            price.text(item.Price + '$');
 
             var avail = row.find('#avail');
             avail.removeAttr('id');
@@ -65,7 +65,7 @@ function fillViewModal(itemId) {
             longTitle.text(item.Name);
 
             var priceModal = viewModal.find('#price-modal');
-            priceModal.text('PKR ' + item.Price);
+            priceModal.text('Price:  ' + item.Price + '$');
 
             viewModal.find('img').attr('src', '/' + item.ImageUrl);
 

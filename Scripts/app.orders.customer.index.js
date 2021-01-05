@@ -41,7 +41,7 @@ $('tbody').on('click', 'tr', function () {
             }
             orderItems.forEach(fillDetailsModal);
 
-            $('#grand-total').text(grandTotal.toFixed(2));
+            $('#grand-total').text(grandTotal.toFixed(2) + '$');
 
             return $('#modal-order-details').modal('toggle');
         });
@@ -61,7 +61,7 @@ function fillDetailsModal(item) {
 
     var price = row.find('#total-price');
     price.removeAttr('id');
-    price.text(item.Price);
+    price.text(item.Price + '$');
 
     $('#table-cart').find('tbody').append(row);
     return item.Qty * item.Price;

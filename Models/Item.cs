@@ -10,8 +10,10 @@ namespace OnlineFoodOrderingSystem.Models
     {
         public int Id { get; set; }
         [Required]
+        [StringLength(30, ErrorMessage = "The Name cannot exceed 30 characters. ")]
         public string Name { get; set; }
         [Required]
+        [StringLength(60, ErrorMessage = "The Description cannot exceed 60 characters. ")]
         public string Description { get; set; }
         [Required]
         public decimal Price { get; set; }

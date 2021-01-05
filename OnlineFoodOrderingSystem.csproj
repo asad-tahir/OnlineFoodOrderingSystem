@@ -181,6 +181,7 @@
     <Compile Include="Controllers\ItemsController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
     <Compile Include="Controllers\OrdersController.cs" />
+    <Compile Include="Controllers\TransactionsController.cs" />
     <Compile Include="Controllers\UsersController.cs" />
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
@@ -213,6 +214,14 @@
     <Compile Include="Migrations\202012291100363_PriceTypeDecimal.designer.cs">
       <DependentUpon>202012291100363_PriceTypeDecimal.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\202101040315475_AddressColumn.cs" />
+    <Compile Include="Migrations\202101040315475_AddressColumn.designer.cs">
+      <DependentUpon>202101040315475_AddressColumn.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\202101040600433_AnnotationStringLength.cs" />
+    <Compile Include="Migrations\202101040600433_AnnotationStringLength.designer.cs">
+      <DependentUpon>202101040600433_AnnotationStringLength.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Category.cs" />
@@ -235,6 +244,7 @@
     <Compile Include="ViewModels\CustomerOrderViewModel.cs" />
     <Compile Include="ViewModels\ItemViewModel.cs" />
     <Compile Include="ViewModels\PlaceOrderViewModel.cs" />
+    <Compile Include="ViewModels\TransactionsViewModel.cs" />
     <Compile Include="ViewModels\UsersViewModel.cs" />
   </ItemGroup>
   <ItemGroup>
@@ -254,6 +264,7 @@
     <Content Include="Scripts\app.items.menu.js" />
     <Content Include="Scripts\app.orders.admin.index.js" />
     <Content Include="Scripts\app.orders.customer.index.js" />
+    <Content Include="Scripts\app.transactions.index.js" />
     <Content Include="Scripts\app.users.index.js" />
     <Content Include="Scripts\bootstrap.bundle.js" />
     <Content Include="Scripts\bootstrap.bundle.min.js" />
@@ -412,6 +423,7 @@
     <Content Include="Views\Users\Index.cshtml" />
     <Content Include="Views\Items\Menu.cshtml" />
     <Content Include="Views\Orders\Index.cshtml" />
+    <Content Include="Views\Transactions\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -448,6 +460,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\202012291100363_PriceTypeDecimal.resx">
       <DependentUpon>202012291100363_PriceTypeDecimal.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101040315475_AddressColumn.resx">
+      <DependentUpon>202101040315475_AddressColumn.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\202101040600433_AnnotationStringLength.resx">
+      <DependentUpon>202101040600433_AnnotationStringLength.cs</DependentUpon>
     </EmbeddedResource>
     <EmbeddedResource Include="Properties\Resources.resx">
       <Generator>ResXFileCodeGenerator</Generator>

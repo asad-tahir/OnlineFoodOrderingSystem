@@ -14,6 +14,7 @@ namespace OnlineFoodOrderingSystem.ViewModels
     {
         public int Id { get; set; }
         [Required]
+        [StringLength(30, ErrorMessage = "The Name Field cannot exceed 30 characters. ")]
         public string Name { get; set; }
         [Required]
         public string Description { get; set; }

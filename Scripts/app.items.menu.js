@@ -62,7 +62,7 @@ function fillViewModal(itemId) {
             longTitle.text(item.Name);
 
             var priceModal = viewModal.find('#price-modal');
-            priceModal.text('PKR ' + item.Price);
+            priceModal.text('Price: ' + item.Price + '$');
 
             viewModal.find('img').attr('src', '/' + item.ImageUrl);
 
@@ -206,6 +206,7 @@ $('#modal-cart').on('click', '#place-order', function () {
 });
 
 $('#payment-modal').on('click', '#submit-info', function () {
+    $('#payment-modal').modal('toggle');
     var __RequestVerificationToken1 = $('#anti-ft').find('input').val();
     var CardNumber = $('#CardNumber').val();
     var expDateYear = ($('#ExpirationDate').val()).split('/');
@@ -226,7 +227,7 @@ $('#payment-modal').on('click', '#submit-info', function () {
         dataType: 'json',
         data: data,
         success: function () {
-            cart = [],
+            cart = [];
             localStorage.removeItem('cart');
             location.href = '/Orders/Index';
         }
